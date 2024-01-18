@@ -36,6 +36,10 @@ fun main() {
  * @property nombre Nombre de la persona.
  * @property imc Índice de Masa Corporal (IMC) de la persona.
  * @constructor Crea una instancia de Persona con peso y altura especificados.
+ * @constructor Crea una instancia de Persona con nombre, peso y altura especificados.
+ * @param nombre Nombre de la persona.
+ * @param peso Peso de la persona en kilogramos.
+ * @param altura Altura de la persona en metros.
  */
 class Persona(peso: Double, altura: Double) {
 
