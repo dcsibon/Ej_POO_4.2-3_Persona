@@ -42,7 +42,7 @@ class Persona(peso: Double, altura: Double) {
     /**
      * Peso de la persona en kilogramos.
      */
-    var peso: Double = 0.0
+    var peso: Double = peso
         set(value) {
             require(value > 0) { "El peso no puede ser negativo." }
             field = value
@@ -51,7 +51,7 @@ class Persona(peso: Double, altura: Double) {
     /**
      * Altura de la persona en metros.
      */
-    var altura: Double = 0.0
+    var altura: Double = altura
         set(value) {
             require(value > 0) { "La altura no puede ser negativa." }
             field = value
@@ -61,7 +61,6 @@ class Persona(peso: Double, altura: Double) {
      * Nombre de la persona.
      */
     var nombre: String = ""
-        get() = field
         set(value) {
             require(value.trim().isNotEmpty()) { "El nombre no puede estar vacío." }
             field = value
@@ -72,9 +71,7 @@ class Persona(peso: Double, altura: Double) {
      */
     var imc: String = ""
         get() = obtenerImc()
-        private set(value) {
-            field = value
-        }
+        private set
 
     /**
      * Constructor secundario que permite crear una instancia de Persona
