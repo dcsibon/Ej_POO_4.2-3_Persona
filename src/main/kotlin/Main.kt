@@ -11,11 +11,11 @@ fun main() {
     persona1.mostrarDesc()
 
     // Modificar el peso y mostrar la descripción de la persona.
-    persona1.peso = 88.77
+    persona1.peso = 84.77
     persona1.mostrarDesc()
 
     // Modificar la altura y mostrar la descripción de la persona.
-    persona1.altura = 91.30
+    persona1.altura = 1.81
     persona1.mostrarDesc()
 
     // Crear una instancia de Persona con nombre, peso y altura especificados.
@@ -36,10 +36,6 @@ fun main() {
  * @property nombre Nombre de la persona.
  * @property imc Índice de Masa Corporal (IMC) de la persona.
  * @constructor Crea una instancia de Persona con peso y altura especificados.
- * @constructor Crea una instancia de Persona con nombre, peso y altura especificados.
- * @param nombre Nombre de la persona.
- * @param peso Peso de la persona en kilogramos.
- * @param altura Altura de la persona en metros.
  */
 class Persona(peso: Double, altura: Double) {
 
