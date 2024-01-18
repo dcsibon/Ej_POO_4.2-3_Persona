@@ -1,3 +1,5 @@
+import kotlin.math.roundToInt
+
 /**
  * Programa principal que demuestra el uso de la clase Persona para representar
  * información sobre el peso, altura y nombre de diferentes personas.
@@ -42,7 +44,7 @@ class Persona(peso: Double, altura: Double) {
     /**
      * Peso de la persona en kilogramos.
      */
-    var peso: Double = peso
+    var peso = peso
         set(value) {
             require(value > 0) { "El peso no puede ser negativo." }
             field = value
@@ -51,7 +53,7 @@ class Persona(peso: Double, altura: Double) {
     /**
      * Altura de la persona en metros.
      */
-    var altura: Double = altura
+    var altura = altura
         set(value) {
             require(value > 0) { "La altura no puede ser negativa." }
             field = value
@@ -60,7 +62,7 @@ class Persona(peso: Double, altura: Double) {
     /**
      * Nombre de la persona.
      */
-    var nombre: String = ""
+    var nombre = ""
         set(value) {
             require(value.trim().isNotEmpty()) { "El nombre no puede estar vacío." }
             field = value
@@ -69,8 +71,8 @@ class Persona(peso: Double, altura: Double) {
     /**
      * Índice de Masa Corporal (IMC) de la persona.
      */
-    var imc: String = ""
-        get() = obtenerImc()
+    var imc = 0.0
+        get() = calcularImc()
         private set
 
     /**
@@ -88,20 +90,11 @@ class Persona(peso: Double, altura: Double) {
     // Métodos privados...
 
     /**
-     * Obtiene el índice de masa corporal (IMC) formateado como una cadena.
-     *
-     * @return Índice de Masa Corporal (IMC) formateado.
-     */
-    private fun obtenerImc(): String {
-        return "%.2f".format(calcularImc())
-    }
-
-    /**
      * Calcula el índice de masa corporal (IMC) de la persona.
      *
-     * @return Índice de Masa Corporal (IMC).
+     * @return Índice de Masa Corporal (IMC) redondeado a 2 posiciones decimales.
      */
-    private fun calcularImc() = this.peso / (this.altura * this.altura)
+    private fun calcularImc() = (this.peso / (this.altura * this.altura) * 100.0).roundToInt() / 100.0
 
     // Métodos públicos...
 
