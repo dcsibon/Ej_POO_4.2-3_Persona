@@ -62,7 +62,10 @@ class Persona(peso: Double, altura: Double) {
     /**
      * Nombre de la persona.
      */
-    var nombre = ""
+    var nombre = "Sin Nombre"
+    //La inicializamos a "Sin Nombre", ya que aunque por el enunciado del ejercicio es posible crear una persona 
+    //sin introducir el nombre en el constructor primario, no tiene sentido que permitamos que esté vacío si vamos
+    //a requerir lo contrario en el set de la propiedad.
         set(value) {
             require(value.trim().isNotEmpty()) { "El nombre no puede estar vacío." }
             field = value
