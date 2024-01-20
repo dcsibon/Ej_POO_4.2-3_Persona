@@ -28,13 +28,13 @@ class Persona(peso: Double, altura: Double) {
 
     var peso = peso
         set(value) {
-            require(value > 0) { "El peso debe ser un valor positivo." }
+            comprobarPeso(value)
             field = value
         }
 
     var altura = altura
         set(value) {
-            require(value > 0) { "La altura debe ser un valor positivo." }
+            comprobarAltura(altura)
             field = value
         }
 
@@ -43,13 +43,18 @@ class Persona(peso: Double, altura: Double) {
         //sin introducir el nombre en el constructor primario, no tiene sentido que permitamos que esté vacío si vamos
         //a requerir lo contrario en el set de la propiedad.
         set(value) {
-            require(value.trim().isNotEmpty()) { "El nombre no puede estar vacío." }
+            comprobarNombre(value)
             field = value
         }
 
     var imc = 0.0
         get() = calcularImc()
         private set
+
+    init {
+        comprobarPeso(peso)
+        comprobarAltura(altura)
+    }
 
     /**
      * Constructor secundario que permite crear una instancia de Persona
@@ -60,6 +65,7 @@ class Persona(peso: Double, altura: Double) {
      * @param altura Altura de la persona en metros.
      */
     constructor(nombre: String, peso: Double, altura: Double): this(peso, altura) {
+        comprobarNombre(nombre)
         this.nombre = nombre
     }
 
@@ -72,6 +78,7 @@ class Persona(peso: Double, altura: Double) {
      * @param altura Altura de la persona en metros (entero).
      */
     constructor(nombre: String, peso: Int, altura: Int): this(peso.toDouble(), altura.toDouble()) {
+        comprobarNombre(nombre)
         this.nombre = nombre
     }
 
@@ -85,6 +92,36 @@ class Persona(peso: Double, altura: Double) {
     constructor(peso: Int, altura: Int): this(peso.toDouble(), altura.toDouble())
 
     // Métodos privados...
+
+    /**
+     * Comprueba que el peso proporcionado sea un valor positivo.
+     *
+     * @param peso Peso a comprobar.
+     * @throws IllegalArgumentException Si el peso no es un valor positivo.
+     */
+    private fun comprobarPeso(peso: Double) {
+        require(peso > 0) { "El peso debe ser un valor positivo." }
+    }
+
+    /**
+     * Comprueba que la altura proporcionada sea un valor positivo.
+     *
+     * @param altura Altura a comprobar.
+     * @throws IllegalArgumentException Si la altura no es un valor positivo.
+     */
+    private fun comprobarAltura(altura: Double) {
+        require(altura > 0) { "La altura debe ser un valor positivo." }
+    }
+
+    /**
+     * Comprueba que el nombre proporcionado no esté vacío.
+     *
+     * @param nombre Nombre a comprobar.
+     * @throws IllegalArgumentException Si el nombre está vacío.
+     */
+    private fun comprobarNombre(nombre: String) {
+        require(nombre.trim().isNotEmpty()) { "El nombre no puede estar vacío." }
+    }
 
     /**
      * Calcula el índice de masa corporal (IMC) de la persona.

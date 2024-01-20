@@ -22,7 +22,7 @@ fun main(){
     persona1.mostrarDesc()
 
     // Crear una instancia de Persona con nombre, peso y altura especificados.
-    val persona2 = Persona("Marta", 61.88, 1.69)
+    val persona2 = damePersona()
     persona2.mostrarDesc()
 
     // Crear una instancia de Persona con nombre, altura y peso especificados.
@@ -78,4 +78,31 @@ fun pideNombreAlUsuario(): String {
         nombre = readln()
     } while (nombre.isBlank())
     return nombre
+}
+
+/**
+ * Solicita nombre, peso y altura de una persona hasta crear una instancia de Persona válida.
+ */
+fun damePersona(): Persona {
+    var persona: Persona? = null
+
+    do {
+        try {
+            print("Introduzca el nombre: ")
+            val nombre = readln()
+            print("Introduzca el peso: ")
+            val peso = readln().toDouble()
+            print("Introduzca la altura: ")
+            val altura = readln().toDouble()
+            persona = Persona(nombre, peso, altura)
+        }
+        catch (e: NumberFormatException) {
+            println("**Error** peso y altura deben ser valores numéricos con decimales (Double).")
+        }
+        catch (e: IllegalArgumentException) {
+            println("**Error** ${e.message}")
+        }
+    } while (persona == null)
+
+    return persona
 }
